@@ -17,6 +17,9 @@
   "bugs": {
     "url": "https://github.com/accimeesterlin/burger/issues"
   },
+  "engines": {
+    "node": "7.8.0"
+  },
   "homepage": "https://github.com/accimeesterlin/burger#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
