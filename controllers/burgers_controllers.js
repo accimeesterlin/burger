@@ -12,7 +12,7 @@ router.get("/", function (req, res) {
     //
     // });
 
-    res.render("index", {result: result});
+    res.render("index");
 
 });
 
