@@ -8,7 +8,7 @@ router.get("/", function (req, res) {
         if (error) {
             return res.render('error');
         }
-        res.render("index", { result: result, style: 'index' });
+        res.render("index", { result: result, style: 'index', title: 'Burger App' });
     });
 });
 
@@ -17,7 +17,7 @@ router.get('/favorites', (req, res) => {
         if (error) {
             return res.render('error');
         }
-        res.render("favorites", { result: result, style: 'favorite' });
+        res.render("favorites", { result: result, style: 'favorite', title: 'My Favorite Burgers' });
     });
 });
 
@@ -26,7 +26,7 @@ router.get('/all', (req, res) => {
         if (error) {
             return res.render('error');
         }
-        res.render("allBurgers", { result: result, style: 'all' });
+        res.render("allBurgers", { result: result, style: 'all', title: 'View all burgers' });
     });
 });
 

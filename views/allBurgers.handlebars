@@ -2,7 +2,7 @@
 
 <div class="all-burgers">
     <div class="favorites-section">
-        <h2>Favorites Burger</h2>
+        <h2>Favorite Burgers</h2>
         {{#each result}} {{#if is_favorite}}
         <div class="burger" data-id="{{id}}">
             <img src="images/gabrielle-cepella-607584-unsplash.jpg" alt="">
@@ -14,7 +14,7 @@
 
 
     <div class="unfavorites-section">
-        <h2>Unfavorites Burgers</h2>
+        <h2>Unfavorite Burgers</h2>
         {{#each result}} {{#unless is_favorite}}
 
         <div class="burger" data-id="{{id}}">
