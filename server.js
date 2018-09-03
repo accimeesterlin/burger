@@ -1,27 +1,30 @@
 
-// Dependencies
-var express = require("express"),
-    methodOverride = require("method-override"),
-    bodyParser = require("body-parser");
+// Importing dependencies
+const express = require("express");
+const methodOverride = require("method-override");
+const bodyParser = require("body-parser");
+const exphbs = require("express-handlebars");
 
-var port = process.env.PORT || 8080;
+// Importing files
+const routes = require("./controllers/burgers_controllers");
 
-var app = express();
+const PORT = process.env.PORT || 9001;
+const app = express();
 
-app.use(express.static(process.cwd() + "/public"));
+app.use(express.static(process.cwd() + "/public")); // serving static files
 
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 app.use(methodOverride("_method"));
 
-var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+// Configure Express Handlebars
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/burgers_controllers");
 
 app.use("/", routes);
 
-app.listen(port);
+app.listen(PORT, () => {
+    console.log(`Server is starting at PORT ${PORT}`);
+});

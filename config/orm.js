@@ -1,28 +1,33 @@
-var connection = require("./connection");
+const connection = require("./connection");
+const log = console.log;
 
-var orm = {
-  selectAll: function (cbd) {
-      connection.query("SELECT * FROM burgers", function (err, data) {
-          if(err){
-              throw err;
-          }
-          cbd(data);
-
-      });
-
-      // connection.end();
-  },
-    insertOne: function (name, devoured, date) {
-        connection.query("INSERT INTO burgers(burger_name, devoured, date) VALUES(?, ?, ?)", [name, devoured, date], function (err, data) {
-            if(err) throw err;
-            console.log("Date has successfully posted to the Database!");
+const orm = {
+    selectAll: function (cb) {
+        connection.query("SELECT * FROM restaurant_burger", function (err, data) {
+            if (err) cb(err, null);
+            cb(null, data);
+        });
+    },
+    selectAllBy: function(condition, value, cb) {
+        const sqlQuery = `SELECT * FROM restaurant_burger WHERE ${condition } = ${value}`;
+        connection.query(sqlQuery, function (err, data) {
+            if (err) cb(err, null);
+            cb(null, data)
+        });
+    },
+    insertOne: function (burgerName, cb) {
+        const sqlQuery = `INSERT INTO restaurant_burger(burger_name) VALUES('${burgerName}')`;
+        connection.query(sqlQuery, function (err, data) {
+            if (err) cb(err, null);
+            cb(null, data);
         });
     },
 
-    updateOne:function (condition, id) {
-        connection.query("UPDATE burgers SET devoured = ? WHERE id = ?", [condition, id], function (err, data) {
-            if(err) throw err;
-            console.log("Data has been updated!");
+    updateOne: function (condition, id, cb) {
+        const sqlQuery = `UPDATE restaurant_burger SET is_favorite = ${condition} WHERE id = ${id}`;
+        connection.query(sqlQuery, function (err, data) {
+            if (err) cb(err, null);
+            cb(null, data)
         });
     }
 };

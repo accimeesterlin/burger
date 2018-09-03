@@ -1,0 +1,75 @@
+const log = console.log;
+
+const burgerTemplate = (burgerName, id) => {
+    const burgerContainer = $('<div>').attr({
+        class: 'content-burger__list',
+        id: id
+    });
+    const img = $('<img>').attr('src', './images/lefteris-kallergis-581884-unsplash.jpg');
+    const name = $('<p>');
+    const button = $('<button>').attr({
+        'data-id': id,
+        class: 'btn btn-default favorites'
+    });
+
+    name.html(burgerName);
+    button.html('Favorite');
+
+    burgerContainer.append(img, name, button);
+    return burgerContainer;
+};
+
+
+const displayNewBurger = (burger) => {
+    const name = burger.burger_name;
+    const id = burger.id;
+    const newBurger = burgerTemplate(name, id);
+    $('.content-burger').prepend(newBurger);
+    $('input').val('');
+};
+
+const addBurgerFail = (response) => {
+    alert('Burger Failed');
+};
+
+$('button[type=submit]').on('click', function(event) {
+    event.preventDefault(); // prevent the Browser from refreshing
+    const burgerName = $('input[name="burger_name"]').val();
+
+    $.ajax({
+        url: '/add',
+        method: 'POST',
+        data: {
+            burger_name: burgerName
+        }
+    })
+    .then(displayNewBurger)
+    .catch(addBurgerFail);
+});
+
+
+
+// Delete a Burger
+const addBurgerToFavorite = (burger) => {
+    const id = burger.id;
+    $(`#${id}`).remove();
+};
+
+const addBurgerToFavoriteFail = () => {
+    alert('Fail adding it to Favorite');
+};
+
+
+$(document).on('click', '.favorites', function() {
+    const id = $(this).attr('data-id');
+    const value = $(this).attr('data-state');
+
+    let condition = value === '0' ? false : true;
+
+    $.ajax({
+        url: `/${id}/${!condition}`,
+        method: 'PUT'
+    })
+    .then(addBurgerToFavorite)
+    .catch(addBurgerToFavoriteFail);
+});

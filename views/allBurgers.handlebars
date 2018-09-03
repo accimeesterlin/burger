@@ -1,0 +1,15 @@
+<div class="panel-body">
+    <h2>Favorites Burger</h2>
+    {{#each result}} {{#if is_favorite}}
+    <p>{{burger_name}}</p>
+    {{/if}} {{/each}}
+
+
+    <h2>Unfavorites Burgers</h2>
+    {{#each result}}
+        {{#unless is_favorite}}
+
+        <p>{{burger_name}}</p>
+        {{/unless}}
+    {{/each}}
+</div>
