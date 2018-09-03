@@ -1,0 +1,40 @@
+.all-burgers {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2em;
+}
+
+.favorites-section {
+    margin-bottom: 5em;
+    width: 500px;
+}
+
+.unfavorites-section {
+    width: 500px;
+}
+
+.all-burgers img {
+    height: 100px;
+}
+
+.all-burgers .burger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #d8d6d6;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.burger p {
+    font-size: 24px;
+}
+
+.favorites-section .burger {
+    background: #e8d1dd;
+}
+
+.unfavorites-section .burger {
+    background: #f5b9ac;
+}

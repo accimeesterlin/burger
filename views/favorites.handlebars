@@ -1,11 +1,8 @@
-<div class="col-md-6">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Devour Burger</h3>
-        </div>
+{{> header }}
 
-        <div class="panel-body">
-            {{#each result}} {{> displayBurger }} {{/each}} 
-        </div>
-    </div>
+<div class="main-favorites">
+    <h2>All your favorites burger</h2>
+   <div class="main-favorites__burgers">
+       {{#each result}} {{> displayBurger }} {{/each}} 
+   </div>
 </div>

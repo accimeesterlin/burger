@@ -2,7 +2,6 @@
 const express = require("express");
 const router = express.Router();
 const orm = require("../config/orm");
-const log = console.log;
 
 router.get("/", function (req, res) {
     orm.selectAllBy('is_favorite', false, function (error, result) {
@@ -45,11 +44,27 @@ router.post("/add", function (req, res) {
             });
         }
 
-        console.log('Burger: ', burger);
         return res.json({
             burger_name: burgerName,
             id: burger.insertId,
             is_favorite: true
+        });
+    });
+});
+
+
+router.delete('/delete/:id', (req, res) => {
+    const id = req.params.id;
+
+    orm.deleteOne(id, (err, result) => {
+        if (err) {
+            return res.status(501).json({
+                message: 'Not able to delete burger'
+            });
+        }
+
+        return res.json({
+            id
         });
     });
 });
@@ -70,6 +85,8 @@ router.put("/:id/:value", function (req, res) {
         });
     });
 });
+
+
 
 
 module.exports = router;

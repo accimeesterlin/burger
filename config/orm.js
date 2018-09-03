@@ -1,5 +1,4 @@
 const connection = require("./connection");
-const log = console.log;
 
 const orm = {
     selectAll: function (cb) {
@@ -25,6 +24,14 @@ const orm = {
 
     updateOne: function (condition, id, cb) {
         const sqlQuery = `UPDATE restaurant_burger SET is_favorite = ${condition} WHERE id = ${id}`;
+        connection.query(sqlQuery, function (err, data) {
+            if (err) cb(err, null);
+            cb(null, data)
+        });
+    },
+
+    deleteOne: function(id, cb) {
+        const sqlQuery = `DELETE FROM restaurant_burger WHERE id = ${id}`;
         connection.query(sqlQuery, function (err, data) {
             if (err) cb(err, null);
             cb(null, data)

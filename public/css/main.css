@@ -1,0 +1,14 @@
+header {
+    display: flex;
+    justify-content: flex-end;
+    margin: 30px;
+}
+
+header nav {
+    display: flex;
+
+}
+
+header nav a {
+    margin-left: 20px;
+}

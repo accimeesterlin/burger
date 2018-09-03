@@ -1,15 +1,28 @@
-<div class="panel-body">
-    <h2>Favorites Burger</h2>
-    {{#each result}} {{#if is_favorite}}
-    <p>{{burger_name}}</p>
-    {{/if}} {{/each}}
+{{> header }}
+
+<div class="all-burgers">
+    <div class="favorites-section">
+        <h2>Favorites Burger</h2>
+        {{#each result}} {{#if is_favorite}}
+        <div class="burger" data-id="{{id}}">
+            <img src="images/gabrielle-cepella-607584-unsplash.jpg" alt="">
+            <p>{{burger_name}}</p>
+            <button class="btn btn-default" data-id="{{id}}">Delete</button>
+        </div>
+        {{/if}} {{/each}}
+    </div>
 
 
-    <h2>Unfavorites Burgers</h2>
-    {{#each result}}
-        {{#unless is_favorite}}
+    <div class="unfavorites-section">
+        <h2>Unfavorites Burgers</h2>
+        {{#each result}} {{#unless is_favorite}}
 
-        <p>{{burger_name}}</p>
-        {{/unless}}
-    {{/each}}
+        <div class="burger" data-id="{{id}}">
+            <img src="images/tom-sodoge-95550-unsplash.jpg" alt="">
+            <p>{{burger_name}}</p>
+            <button class="btn btn-default" data-id="{{id}}">Delete</button>
+            
+        </div>
+        {{/unless}} {{/each}}
+    </div>
 </div>

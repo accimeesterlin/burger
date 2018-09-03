@@ -36,29 +36,29 @@ form button {
     width: 100px;
 }
 
-.content-burger {
+.content .content-burger {
     width: 500px;
     margin: 0 auto;
     overflow: auto;
     margin-top: 10em;
 }
-.content-burger__list {
+.content .content-burger__list {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #60c167;
+    background: #f5b9ac;
     padding: 10px;
-    height: 150px;
+    height: 90px;
     border-radius: 4px;
     margin-top: 20px;
 }
 
-.content-burger__list img {
+.content .content-burger__list img {
     height: 70px;
-    border: 5px solid #d7cdc1;
+    border-radius: 4px;
 }
 
-.content-burger__list p {
+.content .content-burger__list p {
     font-size: 24px;
 }
 

@@ -49,7 +49,7 @@ $('button[type=submit]').on('click', function(event) {
 
 
 
-// Delete a Burger
+// Favorite or Unfavorite burger
 const addBurgerToFavorite = (burger) => {
     const id = burger.id;
     $(`#${id}`).remove();
@@ -72,4 +72,29 @@ $(document).on('click', '.favorites', function() {
     })
     .then(addBurgerToFavorite)
     .catch(addBurgerToFavoriteFail);
+});
+
+
+
+const removeBurgerOnDelete = (burger) => {
+    const id = burger.id;
+
+    $(`.all-burgers .burger[data-id=${id}]`).remove();
+};
+
+
+const removeBurgerFailed = () => {
+    alert('Fail deleting burger');
+};
+
+$('.all-burgers .burger button').on('click', function() {
+    const id = $(this).attr('data-id');
+
+
+    $.ajax({
+        url: `/delete/${id}`,
+        method: 'DELETE'
+    })
+    .then(removeBurgerOnDelete)
+    .catch(removeBurgerFailed);
 });
