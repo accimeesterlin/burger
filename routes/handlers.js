@@ -47,7 +47,7 @@ router.post("/add", function (req, res) {
         return res.json({
             burger_name: burgerName,
             id: burger.insertId,
-            is_favorite: true
+            is_favorite: 0
         });
     });
 });

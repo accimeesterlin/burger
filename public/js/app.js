@@ -1,6 +1,6 @@
 const log = console.log;
 
-const burgerTemplate = (burgerName, id) => {
+const burgerTemplate = (burgerName, id, is_favorite) => {
     const burgerContainer = $('<div>').attr({
         class: 'content-burger__list',
         id: id
@@ -9,11 +9,12 @@ const burgerTemplate = (burgerName, id) => {
     const name = $('<p>');
     const button = $('<button>').attr({
         'data-id': id,
-        class: 'btn btn-default favorites'
+        class: 'btn btn-default favorites',
+        'data-state': is_favorite
     });
 
     name.html(burgerName);
-    button.html('Favorite');
+    button.html('add to favorite');
 
     burgerContainer.append(img, name, button);
     return burgerContainer;
@@ -23,7 +24,8 @@ const burgerTemplate = (burgerName, id) => {
 const displayNewBurger = (burger) => {
     const name = burger.burger_name;
     const id = burger.id;
-    const newBurger = burgerTemplate(name, id);
+    const is_favorite = burger.is_favorite;
+    const newBurger = burgerTemplate(name, id, is_favorite);
     $('.content-burger').prepend(newBurger);
     $('input').val('');
 };
